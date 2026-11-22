@@ -28,17 +28,17 @@ Rules and guidelines are evaluated in strict order of authority:
 
 All AI governance and operations live under `.ai/`:
 
-- [`.ai/context/`](.ai/context/): Core project state, architectural decisions (`adrs/`), and the project constitution ([`constitution.md`](.ai/context/constitution.md)).
+- [`.ai/context/`](.ai/context/): Core project state, architectural decisions (`adrs/`), the project constitution ([`constitution.md`](.ai/context/constitution.md)), and optional domain glossary ([`glossary.md`](.ai/context/glossary.md) — consult if present with content).
 - `.ai/workflows/`: Modular technology-agnostic engineering workflows.
   - `sdd/`: Spec-Driven Development workflows ([`specify.md`](.ai/workflows/sdd/specify.md), [`verify.md`](.ai/workflows/sdd/verify.md)).
   - `fast-track/`: Rapid iteration workflows ([`feature.md`](.ai/workflows/fast-track/feature.md), [`bugfix.md`](.ai/workflows/fast-track/bugfix.md), [`refactor.md`](.ai/workflows/fast-track/refactor.md), [`chore.md`](.ai/workflows/fast-track/chore.md)).
   - `shared/`: Shared lifecycle execution workflows ([`build.md`](.ai/workflows/shared/build.md), [`reject.md`](.ai/workflows/shared/reject.md)).
 - `.ai/instructions/`: Passive quality rules and stack-specific guidelines (loaded on demand via Section 5).
-- `.ai/skills/`: Reusable agent capabilities and active tools ([`code-review.md`](.ai/skills/code-review.md), [`init-context.md`](.ai/skills/init-context.md), [`commit.md`](.ai/skills/commit.md), [`adr.md`](.ai/skills/adr.md)).
+- `.ai/skills/`: Reusable agent capabilities and active tools ([`code-review.md`](.ai/skills/code-review.md), [`init-context.md`](.ai/skills/init-context.md), [`commit.md`](.ai/skills/commit.md), [`adr.md`](.ai/skills/adr.md), [`backlog.md`](.ai/skills/backlog.md)).
 - `.ai/templates/`: Standardized templates for specifications and execution plans.
   - [`.ai/templates/spec.md`](.ai/templates/spec.md): Template for living specifications (`specs/<feature-name>.md`). Used during Step 1 (Specify) of SDD.
 - `.ai/agents/`: Role definitions and profiles for multi-agent setups.
-- `specs/`: Living system specifications generated during development.
+- `specs/`: Living system specifications and backlog (`backlog.md`) generated during development.
 
 ---
 
@@ -77,6 +77,7 @@ Reusable capabilities and active engineering tools.
 | `/corespec.init-context` | Scan codebase and initialize Day Zero context | Skill in [`.ai/skills/init-context.md`](.ai/skills/init-context.md) |
 | `/corespec.commit` | Draft Conventional Commit or Pull Request summary | Skill in [`.ai/skills/commit.md`](.ai/skills/commit.md) |
 | `/corespec.adr` | Document architectural decision record in `.ai/context/adrs/` | Skill in [`.ai/skills/adr.md`](.ai/skills/adr.md) |
+| `/corespec.backlog` | Capture deferred ideas and features in specs/backlog.md | Skill in [`.ai/skills/backlog.md`](.ai/skills/backlog.md) |
 
 ---
 

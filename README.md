@@ -33,12 +33,12 @@ corespec/
 ├── .agent/workflows/       # Native slash command adapters (wrappers for IDE autocomplete)
 ├── .ai/
 │   ├── agents/             # Multi-agent role definitions and profiles
-│   ├── context/            # Core state: project overview, ADRs, and supreme constitution
+│   ├── context/            # Core state: project overview, ADRs, constitution, and optional glossary
 │   ├── instructions/       # Stack-specific coding guidelines loaded on demand (Lazy Loading)
-│   ├── skills/             # Active engineering tools (code review, context init, commit, ADR)
+│   ├── skills/             # Active engineering tools (code review, context init, commit, ADR, backlog)
 │   ├── templates/          # Standard document molds (living specs, RFCs)
 │   └── workflows/          # Modular engineering procedures (SDD, Fast-Track, Shared)
-├── specs/                  # Living system specifications generated during SDD
+├── specs/                  # Living system specifications and deferred backlog (backlog.md)
 ├── AGENTS.md               # Global orchestrator, routing hub, and command registry
 └── README.md               # Project documentation and quick start guide
 ```
@@ -86,10 +86,14 @@ Active engineering tools and capabilities.
 | `/corespec.code-review` | Non-destructive, read-only audit of git diffs classifying findings into Critical, Suggestion, and Nitpick. |
 | `/corespec.commit` | Drafts Conventional Commits messages or PR summaries from diffs with explicit user approval gate. |
 | `/corespec.adr` | Records sequential Architectural Decision Records under `.ai/context/adrs/NNN-<slug>.md`. |
+| `/corespec.backlog` | Captures ideas or future features in `specs/backlog.md` without touching code (anti-scope creep). |
 
 ---
 
 ## Customization & Language Policy
+
+### Optional Domain Glossary
+Define ubiquitous language, business terminology, and forbidden synonyms in [`.ai/context/glossary.md`](.ai/context/glossary.md). When populated, its definitions strictly guide all living specs (`specs/`), UI copy, and chat responses.
 
 ### Adding Stack Instructions (Lazy Loading)
 1. Copy [`.ai/instructions/_template.md`](.ai/instructions/_template.md) to `.ai/instructions/<topic>.md` (e.g., `ui.md`, `network.md`, `storage.md`).

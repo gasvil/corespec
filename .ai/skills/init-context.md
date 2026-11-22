@@ -25,6 +25,9 @@ Onboard a new or existing repository by establishing baseline architectural cont
        - **Directory Map**: High-level explanation of major folders.
    - **Constitution Customization**:
      - Propose additions for Section 2 (Project-Specific Laws) in [`.ai/context/constitution.md`](../context/constitution.md) (architectural constraints, forbidden packages, testing thresholds).
+   - **Domain Glossary (Optional)**:
+     - Detect whether the project relies on specialized domain terms, business jargon, or strict UI nomenclature.
+     - Propose initial definitions in [`.ai/context/glossary.md`](../context/glossary.md), or suggest leaving it empty / omitting it if not applicable.
    - **Tech Instructions Setup**:
      - Propose recommended instruction files to create under `.ai/instructions/` (using [`.ai/instructions/_template.md`](../instructions/_template.md)).
      - Propose the exact rows to add to the "Tech Instructions Registry" table in [AGENTS.md](../../AGENTS.md).
