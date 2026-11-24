@@ -8,7 +8,7 @@
 ## Context Evaluation
 
 Determine the active mode:
-1. **SDD Mode**: An active specification exists under `specs/<feature-name>.md` in `Draft` or `In Progress` status.
+1. **SDD Mode**: An active specification exists under `specs/NN-<feature-name>.md` (or `specs/<feature-name>.md`) in `Draft` or `In Progress` status.
 2. **Fast-Track Mode**: No active specification file exists, but an approved action plan or bugfix exists in the current chat.
 
 ---
@@ -16,7 +16,7 @@ Determine the active mode:
 ## Execution: SDD Mode
 
 1. **Context Loading**:
-   - Read `specs/<feature-name>.md` along with [`.ai/context/`](../../context/) and applicable rules in [`.ai/instructions/`](../../instructions/).
+   - Read the active specification file along with [`.ai/context/`](../../context/) and applicable rules in [`.ai/instructions/`](../../instructions/).
    - Update spec status to `In Progress`.
 2. **Design Discipline**:
    - Do **NOT** create separate design documents (no `design.md`).

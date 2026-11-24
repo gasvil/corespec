@@ -36,7 +36,7 @@ All AI governance and operations live under `.ai/`:
 - `.ai/instructions/`: Passive quality rules and stack-specific guidelines (loaded on demand via Section 5).
 - `.ai/skills/`: Reusable agent capabilities and active tools ([`code-review.md`](.ai/skills/code-review.md), [`init-context.md`](.ai/skills/init-context.md), [`commit.md`](.ai/skills/commit.md), [`adr.md`](.ai/skills/adr.md), [`backlog.md`](.ai/skills/backlog.md)).
 - `.ai/templates/`: Standardized templates for specifications and execution plans.
-  - [`.ai/templates/spec.md`](.ai/templates/spec.md): Template for living specifications (`specs/<feature-name>.md`). Used during Step 1 (Specify) of SDD.
+  - [`.ai/templates/spec.md`](.ai/templates/spec.md): Template for living specifications (`specs/NN-<feature-name>.md`). Used during Step 1 (Specify) of SDD.
 - `.ai/agents/`: Role definitions and profiles for multi-agent setups.
 - `specs/`: Living system specifications and backlog (`backlog.md`) generated during development.
 
