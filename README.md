@@ -2,6 +2,8 @@
 
 > Minimalist, tech-agnostic open source framework for AI-assisted software development, pairing low-boilerplate Spec-Driven Development (SDD) with Fast-Track iteration lanes.
 
+Distributed as a zero-dependency CLI via npm / npx.
+
 ---
 
 ## Core Philosophy
@@ -17,12 +19,46 @@
 
 Get up and running in under 2 minutes:
 
-1. **Import corespec**: Copy `AGENTS.md`, `.ai/`, and `.agent/workflows/` into your target repository root.
-2. **Initialize Context**: Run `/corespec.init-context` in chat. It scans existing code (or asks 4 quick questions for greenfield repos), creates `.ai/context/project-overview.md`, and suggests instructions for your tech stack.
-3. **Set Project Laws**: Open [`.ai/context/constitution.md`](.ai/context/constitution.md) and fill in Section 2 (architectural constraints, test policies, prohibited packages).
+1. **Initialize corespec**: In your target repository root, run:
+   ```bash
+   npx corespec init
+   ```
+   *(Pass `--force` if you want to overwrite existing files)*.
+2. **Initialize Context**: In your AI chat / IDE, run:
+   ```text
+   /corespec.init-context
+   ```
+   It scans existing code (or asks 4 quick questions for greenfield repos), creates `.ai/context/project-overview.md`, and suggests instructions for your tech stack.
+3. **Set Project Laws**: Open `.ai/context/constitution.md` and customize Section 2 (architectural constraints, test policies, prohibited packages).
 4. **Start Building**:
    - For complex features: run `/corespec.specify` to clarify requirements and draft a spec.
    - For quick tasks or bugs: run `/corespec.feature` or `/corespec.bugfix`.
+
+---
+
+## CLI Usage
+
+corespec requires Node.js >= 18 and has zero third-party dependencies:
+
+```bash
+# Initialize corespec in the current directory
+npx corespec init
+
+# Overwrite existing files during initialization
+npx corespec init --force
+
+# Update framework workflows, skills, and templates
+npx corespec update
+
+# Show version or help
+npx corespec --version
+npx corespec --help
+```
+
+### Safe Updates (`corespec update`)
+When updating `corespec`, framework-managed logic is upgraded while your custom project knowledge is protected:
+- **Framework-Managed (Updated)**: `.ai/workflows/`, `.ai/skills/`, `.ai/templates/`, `.agent/workflows/`
+- **User-Owned (Preserved)**: `AGENTS.md`, `.ai/context/`, `.ai/instructions/`, `specs/`
 
 ---
 
@@ -30,17 +66,21 @@ Get up and running in under 2 minutes:
 
 ```text
 corespec/
-├── .agent/workflows/       # Native slash command adapters (wrappers for IDE autocomplete)
-├── .ai/
-│   ├── agents/             # Multi-agent role definitions and profiles
-│   ├── context/            # Core state: project overview, ADRs, constitution, and optional glossary
-│   ├── instructions/       # Stack-specific coding guidelines loaded on demand (Lazy Loading)
-│   ├── skills/             # Active engineering tools (code review, context init, commit, ADR, backlog)
-│   ├── templates/          # Standard document molds (living specs, RFCs)
-│   └── workflows/          # Modular engineering procedures (SDD, Fast-Track, Shared)
-├── specs/                  # Living system specifications and deferred backlog (backlog.md)
-├── AGENTS.md               # Global orchestrator, routing hub, and command registry
-└── README.md               # Project documentation and quick start guide
+├── bin/
+│   └── cli.js              # Zero-dependency executable CLI (npx corespec)
+├── template/               # Template scaffold deployed on init & update
+│   ├── .agent/workflows/   # Native slash command adapters (wrappers for IDE autocomplete)
+│   ├── .ai/
+│   │   ├── agents/         # Multi-agent role definitions and profiles
+│   │   ├── context/        # Core state: project overview, ADRs, constitution, glossary
+│   │   ├── instructions/   # Stack-specific coding guidelines loaded on demand (Lazy Loading)
+│   │   ├── skills/         # Active engineering tools (code review, context init, commit, ADR, backlog)
+│   │   ├── templates/      # Standard document molds (living specs, RFCs)
+│   │   └── workflows/      # Modular engineering procedures (SDD, Fast-Track, Shared)
+│   ├── specs/              # Living system specifications and deferred backlog (backlog.md)
+│   └── AGENTS.md           # Global orchestrator, routing hub, and command registry
+├── package.json            # Node.js package manifest
+└── README.md               # Project documentation and CLI guide
 ```
 
 ---
@@ -93,13 +133,13 @@ Active engineering tools and capabilities.
 ## Customization & Language Policy
 
 ### Optional Domain Glossary
-Define ubiquitous language, business terminology, and forbidden synonyms in [`.ai/context/glossary.md`](.ai/context/glossary.md). When populated, its definitions strictly guide all living specs (`specs/`), UI copy, and chat responses.
+Define ubiquitous language, business terminology, and forbidden synonyms in `.ai/context/glossary.md` (see [template/.ai/context/glossary.md](template/.ai/context/glossary.md)). When populated, its definitions strictly guide all living specs (`specs/`), UI copy, and chat responses.
 
 ### Adding Stack Instructions (Lazy Loading)
-1. Copy [`.ai/instructions/_template.md`](.ai/instructions/_template.md) to `.ai/instructions/<topic>.md` (e.g., `ui.md`, `network.md`, `storage.md`).
-2. Register the file in the **Tech Instructions Registry** table inside [`AGENTS.md`](AGENTS.md) with its `Scope / Trigger`.
+1. Copy `.ai/instructions/_template.md` (see [template/.ai/instructions/_template.md](template/.ai/instructions/_template.md)) to `.ai/instructions/<topic>.md` (e.g., `ui.md`, `network.md`, `storage.md`).
+2. Register the file in the **Tech Instructions Registry** table inside `AGENTS.md` with its `Scope / Trigger`.
 3. AI agents will **only** load the file when a task matches that specific trigger, conserving token budgets.
 
 ### Language Policy
-- **Interaction & Living Specs**: Chat interactions and files generated in `specs/` follow the language used by the user in their prompt (defaulting to English if prompted in English, Spanish if prompted in Spanish). A fixed override can be set in [`.ai/context/constitution.md`](.ai/context/constitution.md).
+- **Interaction & Living Specs**: Chat interactions and files generated in `specs/` follow the language used by the user in their prompt (defaulting to English if prompted in English, Spanish if prompted in Spanish). A fixed override can be set in `.ai/context/constitution.md`.
 - **Infrastructure & Code**: `AGENTS.md`, `.ai/`, source code, comments, and commit messages remain in **English** by default.
