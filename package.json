@@ -1,10 +1,10 @@
 {
   "name": "corespec",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Minimalist, tech-agnostic SDD framework and Fast-Track workflows for AI-assisted engineering.",
   "type": "module",
   "bin": {
-    "corespec": "./bin/cli.js"
+    "corespec": "bin/cli.js"
   },
   "files": [
     "bin/",
